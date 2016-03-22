@@ -1,0 +1,35 @@
+<div style = "text-align:center">
+  <div class ="container-fluid" style = "display:inline-block;background-color:white; box-shadow: 2px 2px 2px 2px #2f2f2f;border-radius:5px;width:40%;margin:10px;height:60%;padding:10px;color:black">
+    <h2>Sign up</h2>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
+
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password %>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "off" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "off" %>
+      </div>
+      <br>
+      <div class="actions">
+        <%= f.submit "Sign up",class: "btn btn-primary" %>
+      </div>
+    <% end %>
+    <div style = "padding:5px">
+    </div>
+
+    <%= render "devise/shared/links" %>
+  </div>
+</div>

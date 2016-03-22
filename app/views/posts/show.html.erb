@@ -1,0 +1,38 @@
+<div class="container-fluid bg-1 text-center">
+	<div class = "row">
+		<div class ="container-fluid" style = "display:inline-block;background-color:#e0e3da; box-shadow: 2px 2px 2px 2px #2f2f2f;border-radius:5px;width:80%;margin:10px;height:70%;padding:10px">
+			<div class = "panel" style = "color:white;background-color:#474e5d">
+	  			<strong><%= @post.title %></strong>
+
+			</div>
+	        <div style = "float:left"><%= image_tag @post.image.url(:large), class: "img-responsive" %></div>   
+	        	<div style = "display:inline-block">
+	          		<div style = "color:#79a8a9"><%= @post.user.name %></div>
+	          		<% if @post.updated_at == @post.created_at %>
+	            		<div style = "float:right;color:grey;font-size:10px">Posted by <%= @post.user.email %> <%= time_ago_in_words(@post.created_at) %></div>
+	          		<% else %>
+	            		<div style = "float:right;color:grey;font-size:10px">Edited by <%= @post.user.email %> <%= time_ago_in_words(@post.updated_at) %></div>
+	          		<% end %>
+	  
+	        	</div>
+	        <div style = "color:black">
+	    		<%= @post.description %>
+	    	</div>
+	    	<br>
+	    	<div style = "color:#ff7473">
+	    		<%= @post.location %>
+	    	</div>
+	    	<div style = "color:black">
+	    		$<%= @post.price %>
+	    	</div>
+ 	    </div>
+
+	</div>
+	<div class = "row">
+		<%= link_to 'Back', posts_path,class: "btn btn-default"  %>
+		<% if current_user == @post.user %>
+			<%= link_to 'Edit', edit_post_path(@post),class: "btn btn-default" %>
+			<%= link_to 'Delete',@post, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger"  %>
+		<% end %>
+	</div>
+</div>
